@@ -1,4 +1,4 @@
-query Query {
+query getAllUsers{
     allUsers {
         first_name
     }

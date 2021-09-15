@@ -1,14 +1,11 @@
 overwrite: true
-schema: "http://10.143.12.69:4000/graphql"
-document: 'src/**/*.graphql'
+schema: "http://localhost:4000/graphql"
+documents: 'src/**/*.graphql'
 generates:
   src/generated/graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
       - "typescript-graphql-request"
-    config:
-      rawRequest: false
-  ./graphql.schema.json:
-    plugins:
-      - "introspection"
+
+

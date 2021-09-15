@@ -134,7 +134,19 @@ export type UserInput = {
   list: Scalars['JSON'];
 };
 
+export type GetAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type GetAllUsersQuery = { __typename?: 'Query', allUsers?: Maybe<Array<Maybe<{ __typename?: 'User', first_name: string }>>> };
+
+
+export const GetAllUsersDocument = gql`
+    query getAllUsers {
+  allUsers {
+    first_name
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
@@ -143,7 +155,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-
+    getAllUsers(variables?: GetAllUsersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllUsersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllUsersQuery>(GetAllUsersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllUsers');
+    }
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;
