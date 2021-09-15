@@ -1,0 +1,70 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type ListMetadata {
+    count: Int
+}
+
+type Mutation {
+    createManyUser(data: [UserInput]): [User]
+    createUser(catch_phrase: String!, email: String!, first_name: String!, gender: String!, ip_address: String!, last_name: String!, list: JSON!): User
+    removeUser(id: ID!): User
+    updateUser(catch_phrase: String, email: String, first_name: String, gender: String, id: ID!, ip_address: String, last_name: String, list: JSON): User
+}
+
+type Query {
+    User(id: ID!): User
+    _allUsersMeta(filter: UserFilter, page: Int, perPage: Int): ListMetadata
+    allUsers(filter: UserFilter, page: Int, perPage: Int, sortField: String, sortOrder: String): [User]
+}
+
+type User {
+    catch_phrase: String!
+    email: String!
+    first_name: String!
+    gender: String!
+    id: ID!
+    ip_address: String!
+    last_name: String!
+    list: JSON!
+}
+
+input UserFilter {
+    catch_phrase: String
+    catch_phrase_neq: String
+    email: String
+    email_neq: String
+    first_name: String
+    first_name_neq: String
+    gender: String
+    gender_neq: String
+    id: ID
+    id_neq: ID
+    ids: [ID]
+    ip_address: String
+    ip_address_neq: String
+    last_name: String
+    last_name_neq: String
+    list: JSON
+    list_neq: JSON
+    q: String
+}
+
+input UserInput {
+    catch_phrase: String!
+    email: String!
+    first_name: String!
+    gender: String!
+    id: ID!
+    ip_address: String!
+    last_name: String!
+    list: JSON!
+}
+
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
